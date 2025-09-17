@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ASCIIArt } from './components/ASCIIArt';
 import { Controls } from './components/Controls';
-import { defaultConfig, ASCIIConfig } from './utils/asciiConverter';
+import { defaultConfig, type ASCIIConfig } from './utils/asciiConverter';
 
 function App() {
   const [config, setConfig] = useState<ASCIIConfig>(defaultConfig);

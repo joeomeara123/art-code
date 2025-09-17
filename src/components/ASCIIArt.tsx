@@ -4,8 +4,7 @@ import {
   convertImageToASCII,
   loadImageToCanvas,
   loadVideoToCanvas,
-  ASCIIConfig,
-  defaultConfig,
+  type ASCIIConfig,
 } from '../utils/asciiConverter';
 
 interface ASCIIArtProps {
@@ -19,7 +18,7 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
   glowIntensity,
   backgroundBlur,
 }) => {
-  const { width, height } = useWindowSize();
+  useWindowSize(); // For responsive behavior
   const [asciiData, setAsciiData] = useState<string[][]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [imageSrc, setImageSrc] = useState<string>('');

@@ -1,4 +1,4 @@
-import { ASCIIConfig } from '../utils/asciiConverter';
+import { type ASCIIConfig } from '../utils/asciiConverter';
 
 interface ControlsProps {
   config: ASCIIConfig;
