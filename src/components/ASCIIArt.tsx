@@ -11,12 +11,16 @@ interface ASCIIArtProps {
   config: ASCIIConfig;
   glowIntensity: number;
   backgroundBlur: number;
+  overlayOpacity: number;
+  blendMode: string;
 }
 
 export const ASCIIArt: React.FC<ASCIIArtProps> = ({
   config,
   glowIntensity,
   backgroundBlur,
+  overlayOpacity,
+  blendMode,
 }) => {
   useWindowSize(); // For responsive behavior
   const [asciiData, setAsciiData] = useState<string[][]>([]);
@@ -145,24 +149,41 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
         </div>
       )}
 
-      {/* ASCII Art Display */}
-      {asciiData.length > 0 && (
+      {/* Image + ASCII Overlay Display */}
+      {asciiData.length > 0 && imageSrc && (
         <div className="w-full h-full max-w-full max-h-full overflow-auto p-4 flex items-center justify-center">
-          <div
-            className="font-mono leading-none select-none"
-            style={{
-              fontSize: `${config.fontSize}px`,
-              lineHeight: `${config.fontSize}px`,
-              ...glowStyle,
-            }}
-          >
-            {asciiData.map((row, y) => (
-              <div key={y} className="whitespace-nowrap">
-                {row.map((char, x) => (
-                  <span key={`${x}-${y}`}>{char}</span>
+          <div className="relative">
+            {/* Background Image */}
+            <img
+              src={imageSrc}
+              alt="Original"
+              className="max-w-full max-h-full object-contain"
+              style={{
+                filter: `blur(${backgroundBlur}px)`,
+              }}
+            />
+
+            {/* ASCII Overlay */}
+            <div
+              className="absolute inset-0 font-mono leading-none select-none flex items-center justify-center"
+              style={{
+                fontSize: `${config.fontSize}px`,
+                lineHeight: `${config.fontSize}px`,
+                ...glowStyle,
+                mixBlendMode: blendMode as any,
+                opacity: overlayOpacity,
+              }}
+            >
+              <div>
+                {asciiData.map((row, y) => (
+                  <div key={y} className="whitespace-nowrap">
+                    {row.map((char, x) => (
+                      <span key={`${x}-${y}`}>{char}</span>
+                    ))}
+                  </div>
                 ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       )}

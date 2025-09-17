@@ -91,3 +91,23 @@ body {
   border: none;
   box-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
 }
+
+.slider-pink::-webkit-slider-thumb {
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #ec4899;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.5);
+}
+
+.slider-pink::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #ec4899;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.5);
+}

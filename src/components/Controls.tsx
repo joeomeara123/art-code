@@ -4,18 +4,26 @@ interface ControlsProps {
   config: ASCIIConfig;
   glowIntensity: number;
   backgroundBlur: number;
+  overlayOpacity: number;
+  blendMode: string;
   onConfigChange: (config: ASCIIConfig) => void;
   onGlowChange: (intensity: number) => void;
   onBlurChange: (blur: number) => void;
+  onOpacityChange: (opacity: number) => void;
+  onBlendModeChange: (mode: string) => void;
 }
 
 export const Controls: React.FC<ControlsProps> = ({
   config,
   glowIntensity,
   backgroundBlur,
+  overlayOpacity,
+  blendMode,
   onConfigChange,
   onGlowChange,
   onBlurChange,
+  onOpacityChange,
+  onBlendModeChange,
 }) => {
   const handleSparsityChange = (value: number) => {
     onConfigChange({ ...config, sparsity: value });
@@ -38,7 +46,7 @@ export const Controls: React.FC<ControlsProps> = ({
   return (
     <div className="w-full h-full bg-black/95 backdrop-blur-sm px-6 py-3 text-white border-t border-white/20 flex items-center">
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 items-center">
           {/* Sparsity Control */}
           <div className="space-y-2">
             <label className="block text-xs font-semibold text-blue-400">
@@ -116,12 +124,41 @@ export const Controls: React.FC<ControlsProps> = ({
             </select>
           </div>
 
-          {/* Current Character Set Display */}
+          {/* Overlay Opacity Control */}
           <div className="space-y-2">
-            <div className="text-xs font-semibold text-orange-400">Current Set:</div>
-            <div className="font-mono text-xs bg-gray-800 p-2 rounded-md border border-gray-600 truncate">
-              "{config.characters}"
-            </div>
+            <label className="block text-xs font-semibold text-pink-400">
+              Opacity: {Math.round(overlayOpacity * 100)}%
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value={overlayOpacity}
+              onChange={(e) => onOpacityChange(Number(e.target.value))}
+              className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider-pink"
+            />
+          </div>
+
+          {/* Blend Mode Control */}
+          <div className="space-y-2">
+            <label className="block text-xs font-semibold text-indigo-400">
+              Blend Mode
+            </label>
+            <select
+              value={blendMode}
+              onChange={(e) => onBlendModeChange(e.target.value)}
+              className="w-full bg-gray-800 text-white text-xs p-2 rounded-md border border-gray-600 focus:border-indigo-400 focus:outline-none"
+            >
+              <option value="overlay">Overlay</option>
+              <option value="multiply">Multiply</option>
+              <option value="screen">Screen</option>
+              <option value="soft-light">Soft Light</option>
+              <option value="hard-light">Hard Light</option>
+              <option value="difference">Difference</option>
+              <option value="exclusion">Exclusion</option>
+              <option value="normal">Normal</option>
+            </select>
           </div>
         </div>
       </div>
