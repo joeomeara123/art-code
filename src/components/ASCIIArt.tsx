@@ -127,13 +127,22 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
       )}
 
       {/* File input */}
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*,video/*"
-        onChange={handleFileChange}
-        className="absolute top-4 left-4 z-10 text-white bg-black/50 px-4 py-2 rounded"
-      />
+      <div className="absolute top-4 left-4 z-10">
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*,video/*"
+          onChange={handleFileChange}
+          className="hidden"
+          id="file-input"
+        />
+        <label
+          htmlFor="file-input"
+          className="cursor-pointer bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-black/90 transition-colors"
+        >
+          Choose File
+        </label>
+      </div>
 
       {/* ASCII Art Display */}
       {asciiData.length > 0 && (
@@ -164,10 +173,19 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
 
       {/* Instructions */}
       {!imageSrc && (
-        <div className="text-center text-white/70 max-w-md">
-          <h2 className="text-2xl mb-4">ASCII Art Generator</h2>
-          <p>Click "Choose File" to upload an image or video</p>
-          <p className="text-sm mt-2">Supports: JPG, PNG, GIF, MP4, WebM</p>
+        <div className="text-center text-white/70 max-w-md mx-auto px-4">
+          <h1 className="text-4xl font-bold mb-6">ASCII Art Generator</h1>
+          <p className="text-lg mb-2">Upload an image or video to convert to ASCII art</p>
+          <p className="text-sm text-white/50">Supports: JPG, PNG, GIF, MP4, WebM</p>
+          <div className="mt-8">
+            <p className="text-sm text-white/60">Use the controls panel to adjust:</p>
+            <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-white/50">
+              <div>• Sparsity (density)</div>
+              <div>• Glow effects</div>
+              <div>• Font size</div>
+              <div>• Background blur</div>
+            </div>
+          </div>
         </div>
       )}
     </div>

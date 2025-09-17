@@ -36,8 +36,8 @@ export const Controls: React.FC<ControlsProps> = ({
   };
 
   return (
-    <div className="fixed top-4 right-4 bg-black/80 backdrop-blur-sm p-4 rounded-lg text-white space-y-4 min-w-[250px] z-20">
-      <h3 className="text-lg font-semibold mb-3">Controls</h3>
+    <div className="fixed top-4 right-4 bg-black/90 backdrop-blur-sm p-4 rounded-lg text-white space-y-3 w-[280px] z-20 max-h-[calc(100vh-2rem)] overflow-y-auto">
+      <h3 className="text-lg font-semibold mb-2">Controls</h3>
 
       {/* Sparsity Control */}
       <div>
