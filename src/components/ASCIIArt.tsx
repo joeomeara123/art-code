@@ -106,7 +106,7 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
 
   return (
     <div
-      className="relative w-full h-full flex items-center justify-center p-4"
+      className="absolute inset-0 w-full h-full flex items-center justify-center p-4"
       style={backgroundStyle}
     >
       {/* Hidden canvas for processing */}
@@ -127,7 +127,7 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
       )}
 
       {/* File input */}
-      <div className="absolute top-4 left-4 z-10">
+      <div className="absolute top-4 left-4 z-30">
         <input
           ref={fileInputRef}
           type="file"

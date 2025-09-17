@@ -9,20 +9,24 @@ function App() {
   const [backgroundBlur, setBackgroundBlur] = useState(0);
 
   return (
-    <div className="w-screen h-screen grid grid-rows-[1fr_auto] overflow-hidden">
-      <ASCIIArt
-        config={config}
-        glowIntensity={glowIntensity}
-        backgroundBlur={backgroundBlur}
-      />
-      <Controls
-        config={config}
-        glowIntensity={glowIntensity}
-        backgroundBlur={backgroundBlur}
-        onConfigChange={setConfig}
-        onGlowChange={setGlowIntensity}
-        onBlurChange={setBackgroundBlur}
-      />
+    <div className="w-screen h-screen grid grid-rows-[1fr_120px] overflow-hidden">
+      <div className="w-full h-full overflow-hidden">
+        <ASCIIArt
+          config={config}
+          glowIntensity={glowIntensity}
+          backgroundBlur={backgroundBlur}
+        />
+      </div>
+      <div className="w-full h-[120px] flex-shrink-0">
+        <Controls
+          config={config}
+          glowIntensity={glowIntensity}
+          backgroundBlur={backgroundBlur}
+          onConfigChange={setConfig}
+          onGlowChange={setGlowIntensity}
+          onBlurChange={setBackgroundBlur}
+        />
+      </div>
     </div>
   );
 }
