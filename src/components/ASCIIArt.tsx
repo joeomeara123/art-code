@@ -106,7 +106,7 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
 
   return (
     <div
-      className="absolute inset-0 w-full h-full flex items-center justify-center p-4"
+      className="relative w-full h-full flex items-center justify-center p-4 overflow-hidden"
       style={backgroundStyle}
     >
       {/* Hidden canvas for processing */}
@@ -147,21 +147,23 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
 
       {/* ASCII Art Display */}
       {asciiData.length > 0 && (
-        <div
-          className="font-mono leading-none select-none"
-          style={{
-            fontSize: `${config.fontSize}px`,
-            lineHeight: `${config.fontSize}px`,
-            ...glowStyle,
-          }}
-        >
-          {asciiData.map((row, y) => (
-            <div key={y} className="whitespace-nowrap">
-              {row.map((char, x) => (
-                <span key={`${x}-${y}`}>{char}</span>
-              ))}
-            </div>
-          ))}
+        <div className="w-full h-full max-w-full max-h-full overflow-auto p-4 flex items-center justify-center">
+          <div
+            className="font-mono leading-none select-none"
+            style={{
+              fontSize: `${config.fontSize}px`,
+              lineHeight: `${config.fontSize}px`,
+              ...glowStyle,
+            }}
+          >
+            {asciiData.map((row, y) => (
+              <div key={y} className="whitespace-nowrap">
+                {row.map((char, x) => (
+                  <span key={`${x}-${y}`}>{char}</span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
