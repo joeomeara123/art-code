@@ -106,7 +106,7 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
 
   return (
     <div
-      className="fixed inset-0 flex flex-col items-center justify-center"
+      className="fixed inset-0 flex flex-col items-center justify-center pb-24"
       style={backgroundStyle}
     >
       {/* Hidden canvas for processing */}
