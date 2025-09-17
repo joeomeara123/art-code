@@ -9,7 +9,7 @@ function App() {
   const [backgroundBlur, setBackgroundBlur] = useState(0);
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
+    <div className="w-screen h-screen grid grid-rows-[1fr_auto] overflow-hidden">
       <ASCIIArt
         config={config}
         glowIntensity={glowIntensity}

@@ -106,10 +106,9 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
 
   return (
     <div
-      className="fixed inset-0 flex flex-col items-center"
+      className="relative w-full h-full flex items-center justify-center p-4"
       style={backgroundStyle}
     >
-      <div className="flex-1 flex items-center justify-center max-h-[calc(100vh-120px)] overflow-auto">
       {/* Hidden canvas for processing */}
       <canvas
         ref={canvasRef}
@@ -189,7 +188,6 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
           </div>
         </div>
       )}
-      </div>
     </div>
   );
 };

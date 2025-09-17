@@ -36,7 +36,7 @@ export const Controls: React.FC<ControlsProps> = ({
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-sm p-4 text-white z-20 border-t border-white/10">
+    <div className="bg-black/95 backdrop-blur-sm p-4 text-white border-t border-white/10">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 items-center">
           {/* Sparsity Control */}
