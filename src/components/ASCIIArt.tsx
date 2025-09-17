@@ -126,23 +126,24 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
         />
       )}
 
-      {/* File input */}
-      <div className="absolute top-4 left-4 z-30">
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*,video/*"
-          onChange={handleFileChange}
-          className="hidden"
-          id="file-input"
-        />
-        <label
-          htmlFor="file-input"
-          className="cursor-pointer bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-black/90 transition-colors"
-        >
-          Choose File
-        </label>
-      </div>
+      {/* Small file input for when content is loaded */}
+      {imageSrc && (
+        <div className="absolute top-4 left-4 z-30">
+          <label
+            htmlFor="file-input-small"
+            className="cursor-pointer bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg hover:bg-black/90 transition-colors text-sm"
+          >
+            Change File
+          </label>
+          <input
+            type="file"
+            accept="image/*,video/*"
+            onChange={handleFileChange}
+            className="hidden"
+            id="file-input-small"
+          />
+        </div>
+      )}
 
       {/* ASCII Art Display */}
       {asciiData.length > 0 && (
@@ -173,17 +174,51 @@ export const ASCIIArt: React.FC<ASCIIArtProps> = ({
 
       {/* Instructions */}
       {!imageSrc && (
-        <div className="text-center text-white/70 max-w-md mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-6">ASCII Art Generator</h1>
-          <p className="text-lg mb-2">Upload an image or video to convert to ASCII art</p>
-          <p className="text-sm text-white/50">Supports: JPG, PNG, GIF, MP4, WebM</p>
-          <div className="mt-8">
-            <p className="text-sm text-white/60">Use the controls panel to adjust:</p>
-            <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-white/50">
-              <div>• Sparsity (density)</div>
-              <div>• Glow effects</div>
-              <div>• Font size</div>
-              <div>• Background blur</div>
+        <div className="text-center text-white/70 max-w-lg mx-auto px-4">
+          <h1 className="text-5xl font-bold mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            ASCII Art Generator
+          </h1>
+
+          {/* Large Choose File Button */}
+          <div className="mb-8">
+            <label
+              htmlFor="file-input-main"
+              className="inline-block cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
+            >
+              Choose File
+            </label>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*,video/*"
+              onChange={handleFileChange}
+              className="hidden"
+              id="file-input-main"
+            />
+          </div>
+
+          <p className="text-lg mb-3 text-white/80">Upload an image or video to convert to ASCII art</p>
+          <p className="text-sm text-white/50 mb-8">Supports: JPG, PNG, GIF, MP4, WebM</p>
+
+          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+            <p className="text-sm text-white/70 mb-4 font-medium">Use the controls below to adjust:</p>
+            <div className="grid grid-cols-2 gap-3 text-sm text-white/60">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Sparsity (density)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Glow effects</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <span>Font size</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <span>Background blur</span>
+              </div>
             </div>
           </div>
         </div>
